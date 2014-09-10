@@ -32,7 +32,22 @@ var Item = domain.models.BaseModel.extend({
 	}
 });
 
+var Event = domain.models.BaseModel.extend({
+	name : 'events',
+	schema : {
+		id : {},
+		name : {
+		},
+		item_id : {
+			required : true
+		}
+	}
+});
+
 domain.rest.Path('/api/items/:id?', Item);
+domain.rest.Path('/api/events/:id?', Event);
+domain.rest.Path('/api/items/:item_id/events', Event);
+
 
 
 app.use(domain.rest.Service);
