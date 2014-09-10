@@ -4,35 +4,17 @@ var app = app || {};
 	app.MainController = Wires.MVC.Controller.extend({
 		essentials : {
 			views : {
-				'index' : 'main.html',
-				'showEvents' : 'events.html',
-			},
-			collections : {
-				items : app.ItemModel
+				'index' : 'index.html',
 			}
-		},
-		initialize : function() {
-			
 		},
 		// Index ******************************
 		index : function(params, render) {
-			this.item = new app.ItemModel();
-			this.item.setCollection(this.items);
-			render();
-		},
-		showEvents : function(params, render) {
-			this.item = this.items.findById(params.id);
-			// Fetching
-			this.item.fetchMany('events');
-			
-			this.event = new app.EventModel();
-			
-			//Setting app id
-			this.event.item_id = this.item.id;
-			// Setting collection to to add
-			
-			this.event.setCollection(this.item.events);
-			
+			this.name = "Wires";
+			var self = this;
+			self.blink = true;
+			setInterval(function(){
+				self.blink = self.blink ? false : true;
+			},1000);
 			render();
 		}
 	});
